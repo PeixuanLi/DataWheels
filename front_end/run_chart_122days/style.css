@@ -1,0 +1,42 @@
+.container {
+    margin: 30px auto;
+    width: 600px;
+    height: 300px;
+    border: 1px solid #000;
+}
+.axis path,
+.axis line,
+.line {
+/*    stroke: #000;*/
+    fill: none;
+}
+
+/*.linecircle {
+  fill: green;
+}*/
+.linecircle:hover {
+  fill: steelblue;
+}
+.flag {
+  stroke: gray;
+  stroke-dasharray: 5;
+  stroke-width: 1.5;
+  display: none;
+  pointer-events: none;
+}
+.tips {
+  pointer-events: none;
+  display: none;
+}
+.tips-border {
+  fill: #F3E4E4;
+  stroke: gray;        
+  stroke-width: 2;
+}
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.7;
+}
+.grid path {
+  stroke-width: 0;
+}

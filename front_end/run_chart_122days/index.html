@@ -1,0 +1,31 @@
+<html>
+<head>
+  <!-- complete your HTML head here -->
+  <meta charset="UTF-8">
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/jQuery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="myscripts.js"></script> 
+  <script src="display.js"></script> 
+</head>
+<body>
+<div class="plot">
+  <svg >
+    
+  </svg>
+</div>
+<div class="ui">
+  <div>
+    <label>X-Axis</label>
+    <select id="sel-x">
+      <option value="name">name</option>
+    </select>
+  </div>
+  <div>
+    <input id="mpg-min" type="text" size="10">
+    <button id="update" onclick="display()">Query</button>
+  </div>
+</div>
+</body>
+</html>
+

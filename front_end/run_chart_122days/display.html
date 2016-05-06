@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>display</title>
+        <style>
+            .container {
+                margin: 30px auto;
+                width: 600px;
+                height: 300px;
+                border: 1px solid #000;
+            }
+            .axis path,
+            .axis line,
+            .line {
+                stroke: #000;
+                fill: none;
+            }
+        </style>
+    </head>
+    <body>
+
+      <div class="plot">
+        <svg >
+          
+        </svg>
+      </div>
+
+
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script>
+        	var margin = {top: 20, right: 60, bottom: 30, left: 100},
+  			width = document.body.clientWidth - margin.left - margin.right,
+  			height = 500 - margin.top - margin.bottom;
+  			
+  			var customTimeFormat = d3.time.format.multi([
+    		[".%L", function(d) { return d.getMilliseconds(); }],
+    		[":%S", function(d) { return d.getSeconds(); }],
+    		["%I:%M", function(d) { return d.getMinutes(); }],
+    		["%I %p", function(d) { return d.getHours(); }],
+    		["%a %d", function(d) { return d.getDay() && d.getDate() != 1; }],
+    		["%b %d", function(d) { return d.getDate() != 1; }],
+    		["%B", function(d) { return d.getMonth(); }],
+    		["%Y", function() { return true; }]
+  			]);
+  //Format
+   			var parseDate = d3.time.format("%Y-%m-%d").parse;
+ 
+			var container = d3.select('.plot')
+  			.append('svg')
+  			.attr('width', width + margin.left + margin.right)
+  			.attr('height', height + margin.top + margin.bottom);
+ 
+			var svg = container.append('g')
+  			.attr('class', 'content')
+  			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+  
+// added
+      // var dsv = d3.dsv("\t","text/plain");
+      // var allData = [];
+      // dsv("./Result_trip_num/Green_trips_num",function(error,dsvdata){
+          
+      //         allData = dsvdata;
+      //         // console.log(data)
+      //         console.log(allData[0]);
+      // });
+
+
+// added end
+
+
+
+  		
+      var data = Array.apply(0, Array(31)).map(function(item, i) {
+  // 产生31条数据
+  			i++;
+  			return {date: parseDate('2013-12-' + (i < 10 ? '0' + i : i)), value: parseInt(Math.random() * 100)}
+			});
+      
+        //console.log(allData,length);
+
+      //var data = allData;
+      console.log(data,length);
+			var x = d3.time.scale()
+  			.domain(d3.extent(data, function(d) { return d.date; }))
+  			.range([0, width]);
+ 
+			var y = d3.scale.linear()
+  			.domain([0, d3.max(data, function(d) { return d.value; })])
+  			.range([height, 0]);
+  	
+  	
+  			var xAxis = d3.svg.axis()
+  			.scale(x)
+  			.orient('bottom')
+  			.tickFormat(customTimeFormat);
+ 
+			var yAxis = d3.svg.axis()
+  			.scale(y)
+  			.orient('left')
+  			.ticks(10);
+  
+  // 横坐标
+			svg.append('g')
+  			.attr('class', 'x axis')
+  			.attr('transform', 'translate(0,' + height + ')')
+  			.call(xAxis)
+  // 增加坐标值说明
+  			.append('text')
+  			.text('Date')
+  			.attr('transform', 'translate(' + width + ', 0)');
+ 
+// 纵坐标
+			svg.append('g')
+  			.attr('class', 'y axis')
+ 			.call(yAxis)
+ 			.append('text')
+  			.text('Times/Day');
+  
+ 			var line = d3.svg.line()
+  			.x(function(d) { return x(d.date); })
+  			.y(function(d) { return y(d.value); })
+  			.interpolate('monotone');
+  
+  			var path = svg.append('path')
+  			.attr('class', 'line')
+  			.attr('d', line(data));
+  
+        
+
+        </script>
+
+
+
+    </body>
+</html>
