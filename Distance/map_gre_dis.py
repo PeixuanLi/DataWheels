@@ -35,8 +35,10 @@ for line in sys.stdin:
 					dis_ran = "7-8"
 				elif (8<= trip_dis) & (trip_dis <9):
 					dis_ran = "8-9"
+				elif (9<= trip_dis) & (trip_dis <10):
+					dis_ran = "9-10"
 
-				elif 6<= trip_dis:
+				elif 10<= trip_dis:
 					dis_ran = ">10"
 				else:
 					dis_ran = "N/A"
