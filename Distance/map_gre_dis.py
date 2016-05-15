@@ -17,7 +17,7 @@ for line in sys.stdin:
 		#total_a = float(l[19])
 			try:
 				trip_dis=float(m[10])
-				if trip_dis<1:
+				if (trip_dis<1) & (0<trip_dis):
 					dis_ran = "0-1"
 				elif (1<= trip_dis) & (trip_dis <2):
 					dis_ran = "1-2"
